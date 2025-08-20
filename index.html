@@ -19,6 +19,9 @@
     <!-- AOS Animation Library -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Custom Styles -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
@@ -36,6 +39,7 @@
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="nav-controls">
@@ -49,24 +53,50 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content" data-aos="fade-up">
-            <p class="hero-subtitle">console.log("Hello World!");</p>
-            <h1 class="hero-title">Fakhrul Mukhlisin</h1>
-            <p class="hero-description">
-                Information Systems Student & Digital Marketing Specialist with expertise in modern web development, 
-                AI implementation, and creative digital solutions.
-            </p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">
-                    <span>View My Work</span>
-                    <span>→</span>
-                </a>
-                <a href="#contact" class="btn btn-secondary glass">
-                    <span>Get In Touch</span>
-                    <span>✉</span>
-                </a>
+    <!-- Floating Particles Background -->
+    <div class="bg-effect-img">
+        <div class="marquee">
+            <h2>Digital Developer</h2>
+            <h2>Fakhrul Mukhlisin</h2>
+        </div>
+    </div>
+
+    <!-- Hero Cover Section -->
+    <section id="home" class="hero-cover">
+        <div class="hero-container">
+            <div class="hero-image-section" data-aos="fade-right">
+                <div class="hero-image-wrapper glass">
+                    <div class="hero-image-in">
+                        <img src="assets/images/profile.jpg" alt="Fakhrul Mukhlisin Profile" class="hero-profile-img">
+                    </div>
+                </div>
+            </div>
+            <div class="hero-intro-section" data-aos="fade-left">
+                <div class="hero-intro">
+                    <p class="hero-subtitle">console.log("Hello World!");</p>
+                    <h1 class="hero-name">Fakhrul Mukhlisin</h1>
+                    <h2 class="hero-role">I'm a <span id="type-it">Developer</span></h2>
+                    <p class="hero-description">
+                        Information Systems Student & Digital Marketing Specialist with expertise in modern web development, 
+                        AI implementation, and creative digital solutions.
+                    </p>
+                    <ul class="social-links glass">
+                        <li><a href="#" class="social-link"><i class="fab fa-github"></i></a></li>
+                        <li><a href="#" class="social-link"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a href="#" class="social-link"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#" class="social-link"><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                    <div class="cta-buttons">
+                        <button class="explore-btn" onclick="scrollToPortfolio()">
+                            <span>Lihat Portfolio Lengkap</span>
+                            <i class="fas fa-arrow-down"></i>
+                        </button>
+                        <a href="#contact" class="btn btn-secondary glass">
+                            <span>Get In Touch</span>
+                            <span>✉</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -363,6 +393,42 @@
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section">
+        <h2 class="section-title" data-aos="fade-up">Client Testimonials</h2>
+        <div class="testimonials-container">
+            <div class="testimonials-section glass" data-aos="fade-up">
+                <div class="testimonials-header">
+                    <h3>Apa Kata Mereka</h3>
+                    <p>Testimoni dari klien yang telah bekerja sama dengan saya</p>
+                    <button class="add-comment-btn" onclick="openModal()">
+                        💬 Ikut Berkomentar
+                    </button>
+                </div>
+
+                <!-- Carousel Comments -->
+                <div class="carousel-container" id="carouselContainer">
+                    <div class="carousel-track auto-scroll" id="carouselTrack">
+                        <!-- Comments will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Carousel Controls -->
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prevBtn" onclick="moveCarousel(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="auto-play-toggle active" id="autoPlayBtn" onclick="toggleAutoPlay()">
+                        <i class="fas fa-play"></i> Auto
+                    </button>
+                    <button class="carousel-btn" id="nextBtn" onclick="moveCarousel(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="section">
         <h2 class="section-title" data-aos="fade-up">Let's Work Together</h2>
@@ -454,9 +520,80 @@
         <span>↑</span>
     </button>
 
+    <!-- Comment Detail Modal -->
+    <div class="comment-detail-overlay" id="commentDetailOverlay">
+        <div class="comment-detail-card glass">
+            <button class="comment-detail-close" onclick="closeCommentDetail()">&times;</button>
+            <div class="comment-detail-header" id="commentDetailHeader">
+                <!-- Comment detail header will be inserted here -->
+            </div>
+            <div class="comment-detail-text" id="commentDetailText">
+                <!-- Comment detail text will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Testimonial Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content glass">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h3 class="modal-title">Tambah Testimoni Anda</h3>
+            
+            <form id="commentForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="testimonial-name">Nama Lengkap *</label>
+                        <input type="text" id="testimonial-name" name="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="testimonial-position">Posisi *</label>
+                        <input type="text" id="testimonial-position" name="position" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="testimonial-company">Asal Perusahaan *</label>
+                        <input type="text" id="testimonial-company" name="company" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profileImage">Foto Profile</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="profileImage" name="profileImage" accept="image/*">
+                            <label for="profileImage" class="file-input-label">
+                                📷 Pilih Foto
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="testimonial-comment">Testimoni *</label>
+                        <textarea id="testimonial-comment" name="comment" class="form-control" placeholder="Ceritakan pengalaman Anda bekerja sama dengan saya..." required></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" onclick="closeModal()">Batal</button>
+                    <button type="submit" class="submit-btn">Kirim Testimoni</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="js/particles.js"></script>
-    <script src="js/main.js"></script>
+    
+    <!-- Modular JavaScript Files -->
+    <script src="js/modules/ThemeManager.js"></script>
+    <script src="js/modules/NavigationManager.js"></script>
+    <script src="js/modules/SkillsManager.js"></script>
+    <script src="js/modules/TestimonialsManager.js"></script>
+    <script src="js/modules/ContactManager.js"></script>
+    <script src="js/modules/PortfolioApp.js"></script>
+    <script src="js/main-modular.js"></script>
+    
+    <!-- Fallback to monolithic version if needed -->
+    <!-- <script src="js/main.js"></script> -->
 </body>
 </html>
